@@ -58,7 +58,8 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link active"><i class="fa fa-th me-2"></i>Inicio</a>
+                    <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
+                    <i class="fa fa-th me-2"></i>Inicio</a>
                     @if ($user->id_roles == 1)
                         <a href="widget.html" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>
                         <a href="widget.html" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mis certificados</a>
@@ -73,11 +74,11 @@
                     @endif
                     @if ($user->id_roles == 3)
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Tablas complementarias</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Menu</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Buttons</a>
-                            <a href="typography.html" class="dropdown-item">Typography</a>
-                            <a href="element.html" class="dropdown-item">Other Elements</a>
+                            <a href="{{ route('roles.index') }}" class="nav-item nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}">Roles</a>
+                            <a href="{{ route('type.certificates.index') }}" class="nav-item nav-link {{ request()->routeIs('type.certificates.index') ? 'active' : '' }}">Tipo de certificados</a>
+                            <a href="{{ route('type.clothings.index') }}" class="nav-item nav-link {{ request()->routeIs('type.clothings.index') ? 'active' : '' }}">Tipo de vestimentas</a>
                         </div>
                     </div>
                     @endif
@@ -101,6 +102,7 @@
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        
     </div>
 
     <!-- JavaScript Libraries -->
