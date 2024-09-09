@@ -8,4 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Certificate extends Model
 {
     use HasFactory;
+
+        /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'id_type_certificates',
+        'id_logistic',
+    ];
+    public function certificates()
+    {
+        return $this->belongsTo(Certificate::class, 'id_type_certificates');
+    }
+
+    public function logistics()
+    {
+        return $this->belongsTo(Logistic::class, 'id_logistics');
+    }
+
 }
