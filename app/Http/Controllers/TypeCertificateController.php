@@ -62,7 +62,11 @@ class TypeCertificateController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $type = TypeCertificate::find($id);
+        $type->name = $request->name;
+        $type->save();
+
+        return redirect(route('type.certificates.index'));
     }
 
     /**
@@ -70,6 +74,7 @@ class TypeCertificateController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $type = TypeCertificate::find($id);
+        $type->delete();
     }
 }
