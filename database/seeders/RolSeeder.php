@@ -10,7 +10,7 @@ class RolSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('rols')->insert([
+        DB::table('roles')->insert([
             ['rol' => 'Logistico'],
             ['rol' => 'Coordinador'],
             ['rol' => 'Soporte'],
