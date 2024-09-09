@@ -23,8 +23,17 @@ class User extends Authenticatable
         'photo',
         'document',
         'status',
-        'id_rol',
+        'id_roles',
     ];
+    public function roles()
+    {
+        return $this->belongsTo(Role::class, 'id_roles');
+    }
+
+    public function hasRole($role)
+    {
+        return $this->roles()->where('rol', $role)->exists();
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('assistences', function (Blueprint $table) {
+        Schema::create('colletion_accounts', function (Blueprint $table) {
             $table->id();
-            $table->time('hour');
+            $table->double('price');
+            $table->string('url');
             $table->integer('status');
-            $table->integer('id_events');
-            $table->integer('id_logistics');
+            $table->foreignId('id_assistences')->constrained('assistences');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assistences');
+        Schema::dropIfExists('colletion_accounts');
     }
 };

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('photo');
             $table->string('document');
             $table->string('status');
-            $table->integer('id_rol');
+            $table->foreignId('id_roles')->constrained('roles');
             $table->rememberToken();
             $table->timestamps();
         });

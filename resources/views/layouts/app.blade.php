@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
+    
     <meta charset="utf-8">
     <title>DarkPan - Bootstrap 5 Admin Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -45,33 +45,49 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Logistica</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="{{asset('img').$user->photo}}" alt="" style="width: 40px; height: 40px;">
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
-                        <span>Admin</span>
+                        <h6 class="mb-0">{{$user->name}}</h6>
+                        <span>{{$user->roles->rol}}</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="index.html" class="nav-item nav-link active"><i class="fa fa-th me-2"></i>Inicio</a>
+                    @if ($user->id_roles == 1)
+                        <a href="widget.html" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>
+                        <a href="widget.html" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mis certificados</a>
+                        <a href="widget.html" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mis solicitudes</a>
+                        <a href="widget.html" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mi perfil</a>
+                    @endif
+                    @if ($user->id_roles == 2)
+                        <a href="widget.html" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>
+                        <a href="widget.html" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Asistencias</a>
+                        <a href="widget.html" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Solicitudes</a>
+                        <a href="widget.html" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mi perfil</a>
+                    @endif
+                    @if ($user->id_roles == 3)
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Tablas complementarias</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="button.html" class="dropdown-item">Buttons</a>
                             <a href="typography.html" class="dropdown-item">Typography</a>
                             <a href="element.html" class="dropdown-item">Other Elements</a>
                         </div>
                     </div>
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-                    <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
-                    <a href="{{route('logout')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Logout</a>
+                    @endif
+                    <a class="nav-item nav-link" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    <i class="fa fa-window-close me-2"></i>Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </nav>
         </div>

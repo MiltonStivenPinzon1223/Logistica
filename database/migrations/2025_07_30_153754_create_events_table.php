@@ -22,8 +22,8 @@ return new class extends Migration
             $table->time('end');
             $table->integer('quotas');
             $table->string('description');
-            $table->integer('id_type_clothings');
-            $table->integer('id_users');
+            $table->foreignId('id_type_clothing')->constrained('type_clothing');
+            $table->foreignId('id_users')->constrained('users');
             $table->timestamps();
         });
     }

@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('logistics', function (Blueprint $table) {
+        Schema::create('certificates', function (Blueprint $table) {
             $table->id();
-            $table->string('celular');
-            $table->string('description');
-            $table->integer('id_users');
+            $table->foreignId('id_type_certificates')->constrained('type_certificates');
+            $table->foreignId('id_logistics')->constrained('logistics');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('logistics');
+        Schema::dropIfExists('certificates');
     }
 };

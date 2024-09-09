@@ -9,9 +9,6 @@
                 @csrf
             <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <a href="{{route('index')}}" class="">
-                        <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Logistica</h3>
-                    </a>
                     <h3>Registro</h3>
                 </div>
                 <div class="form-floating mb-3">
@@ -59,7 +56,7 @@
                     <label for="floatingPassword">Confirmar contraseña</label>
                 </div>
                 <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
-                <p class="text-center mb-0">Already have an Account? <a href="{{route('login')}}">Sign In</a></p>
+                <p class="text-center mb-0">¿Ya tienes una cuenta? <a href="{{route('login')}}">Ingresa!</a></p>
             </div>
         </div>
         </form>
