@@ -6,7 +6,7 @@
     <div class="container-fluid pt-4 px-4">
         <div class="bg-primary rounded d-flex align-items-center justify-content-between p-4">
             <h3>{{$type->name}}</h3>
-            <a href="{{route('assistence.edit', $type->id)}}" type="button" class="btn btn-success">Editar</a>
+            <a href="{{route('assistences.edit', $type->id)}}" type="button" class="btn btn-success">Editar</a>
         </div>
     </div>
     <!-- Sale & Revenue End -->

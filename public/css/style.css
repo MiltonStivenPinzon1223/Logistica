@@ -1,9 +1,9 @@
 /********** Template CSS **********/
 :root {
-    --primary: #EB1616;
-    --secondary: #191C24;
-    --light: #d6d6d6;
-    --dark: #000000;
+    --primary: #fff;
+    --secondary: #08031d;
+    --light: black;
+    --dark: #08031d;
 }
 
 .back-to-top {
@@ -195,7 +195,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--dark);
+    background: var(--primary);
     border-radius: 40px;
 }
 
