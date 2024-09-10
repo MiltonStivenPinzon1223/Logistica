@@ -11,11 +11,11 @@
                 <div class="card text-white bg-primary">
                     <div class="card-body">
                         <h5>¿Estás seguro de que deseas eliminar la asistencia: <strong>{{ $type->name }}</strong>?</h5>
-                        <form action="{{route('assistence.destroy', $type->id)}}" method="POST">
+                        <form action="{{route('assistences.destroy', $type->id)}}" method="POST">
                             @csrf
                             @method('DELETE') <!-- Para el método DELETE -->
                             <button type="submit" class="btn btn-danger">Eliminar</button>
-                            <a href="{{route('assistence.index')}}" class="btn btn-secondary">Cancelar</a>
+                            <a href="{{route('assistences.index')}}" class="btn btn-secondary">Cancelar</a>
                         </form>
                     </div>
                 </div>

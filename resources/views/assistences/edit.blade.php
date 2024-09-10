@@ -10,7 +10,7 @@
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                 <div class="card text-white bg-primary">
                     <div class="card-body">
-                        <form action="{{route('assistence.update', $type->id)}}" method="POST">
+                        <form action="{{route('assistences.update', $type->id)}}" method="POST">
                             @csrf
                             @method('PUT') <!-- Para usar el método PUT en el formulario -->
                             <div class="mb-3 mt-3">

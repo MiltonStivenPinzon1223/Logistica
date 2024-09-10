@@ -10,7 +10,7 @@
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                 <div class="card text-white bg-primary">
                     <div class="card-body">
-                        <form action="{{route('assistence.store')}}" method="POST">
+                        <form action="{{route('assistences.store')}}" method="POST">
                             @csrf
                             @method('POST')
                             <div class="mb-3 mt-3">
