@@ -8,14 +8,18 @@
             <h3>Tipos de Vestimenta</h3>
         </div>
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                <div class="card text-white bg-primary">
+                <div class="card text-black bg-lighth w-100">
                     <div class="card-body">
-                        <form action="{{route('type.clothing.store')}}" method="POST">
+                        <form action="{{route('type.clothings.store')}}" method="POST">
                             @csrf
                             @method('POST')
                             <div class="mb-3 mt-3">
                               <label for="name" class="form-label">Tipo de vestimenta:</label>
                               <input type="text" class="form-control" id="name" placeholder="Ingrese nombre" name="name">
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="name" class="form-label">Descripción:</label>
+                                <input type="text" class="form-control" id="name" placeholder="Ingrese descripción" name="name">
                             </div>
                             <button type="submit" class="btn btn-secondary">Submit</button>
                         </form>

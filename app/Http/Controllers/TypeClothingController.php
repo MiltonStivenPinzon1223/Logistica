@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TypeClothing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TypeClothingController extends Controller
 {
@@ -11,7 +13,9 @@ class TypeClothingController extends Controller
      */
     public function index()
     {
-        //
+        $types = TypeClothing::all();
+        $user = Auth::user();
+        return view('typeClothing.index', compact('types', 'user'));
     }
 
     /**
@@ -19,7 +23,8 @@ class TypeClothingController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        return view('typeClothing.create', compact('user'));
     }
 
     /**
