@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Certificate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CertificateController extends Controller
 {
@@ -11,7 +13,9 @@ class CertificateController extends Controller
      */
     public function index()
     {
-        //
+        $certificates = Certificate::all();
+        $user = Auth::user();
+        return view('certificates.index', compact('certificates', 'user'));
     }
 
     /**
@@ -19,7 +23,8 @@ class CertificateController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        return view('certificates.create', compact('user'));
     }
 
     /**
@@ -27,15 +32,21 @@ class CertificateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $certificate = new Certificate();
+        $certificate->name = $request->name;
+        $certificate->save();
+
+        return redirect(route('certificates.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $certificate = Certificate::find($id);
+        $user = Auth::user();
+        return view('certificates.show', compact('certificate', 'user'));
     }
 
     /**
@@ -43,7 +54,9 @@ class CertificateController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $certificate = Certificate::find($id);
+        $user = Auth::user();
+        return view('certificates.edit', compact('certificate', 'user'));
     }
 
     /**
@@ -51,7 +64,11 @@ class CertificateController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $certificate = Certificate::find($id);
+        $certificate->name = $request->name;
+        $certificate->save();
+
+        return redirect(route('certificates.index'));
     }
 
     /**
@@ -59,6 +76,9 @@ class CertificateController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $certificate = Certificate::find($id);
+        $certificate->delete();
+
+        return redirect(route('certificates.index'));
     }
 }

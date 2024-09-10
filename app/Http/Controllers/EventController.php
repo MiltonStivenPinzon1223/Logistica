@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -11,7 +13,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        return "asd";
+        $events = Event::all();
+        $user = Auth::user();
+        return view('events.index', compact('events', 'user'));
     }
 
     /**
@@ -19,7 +23,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        return view('events.create', compact('user'));
     }
 
     /**
@@ -27,15 +32,23 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $event = new Event();
+        $event->name = $request->name;
+        $event->date = $request->date;
+        $event->location = $request->location;
+        $event->save();
+
+        return redirect(route('events.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $event = Event::find($id);
+        $user = Auth::user();
+        return view('events.show', compact('event', 'user'));
     }
 
     /**
@@ -43,7 +56,9 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $event = Event::find($id);
+        $user = Auth::user();
+        return view('events.edit', compact('event', 'user'));
     }
 
     /**
@@ -51,7 +66,13 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $event = Event::find($id);
+        $event->name = $request->name;
+        $event->date = $request->date;
+        $event->location = $request->location;
+        $event->save();
+
+        return redirect(route('events.index'));
     }
 
     /**
@@ -59,6 +80,9 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $event = Event::find($id);
+        $event->delete();
+
+        return redirect(route('events.index'));
     }
 }

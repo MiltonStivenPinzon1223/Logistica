@@ -13,9 +13,9 @@ class TypeClothingController extends Controller
      */
     public function index()
     {
-        $types = TypeClothing::all();
+        $typeClothings = TypeClothing::all();
         $user = Auth::user();
-        return view('typeClothing.index', compact('types', 'user'));
+        return view('typeClothings.index', compact('typeClothings', 'user'));
     }
 
     /**
@@ -24,7 +24,7 @@ class TypeClothingController extends Controller
     public function create()
     {
         $user = Auth::user();
-        return view('typeClothing.create', compact('user'));
+        return view('typeClothings.create', compact('user'));
     }
 
     /**
@@ -32,15 +32,22 @@ class TypeClothingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $typeClothing = new TypeClothing();
+        $typeClothing->name = $request->name;
+        $typeClothing->description = $request->description;
+        $typeClothing->save();
+
+        return redirect(route('typeClothings.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $typeClothing = TypeClothing::find($id);
+        $user = Auth::user();
+        return view('typeClothings.show', compact('typeClothing', 'user'));
     }
 
     /**
@@ -48,7 +55,9 @@ class TypeClothingController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $typeClothing = TypeClothing::find($id);
+        $user = Auth::user();
+        return view('typeClothings.edit', compact('typeClothing', 'user'));
     }
 
     /**
@@ -56,7 +65,12 @@ class TypeClothingController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $typeClothing = TypeClothing::find($id);
+        $typeClothing->name = $request->name;
+        $typeClothing->description = $request->description;
+        $typeClothing->save();
+
+        return redirect(route('typeClothings.index'));
     }
 
     /**
@@ -64,6 +78,9 @@ class TypeClothingController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $typeClothing = TypeClothing::find($id);
+        $typeClothing->delete();
+
+        return redirect(route('typeClothings.index'));
     }
 }

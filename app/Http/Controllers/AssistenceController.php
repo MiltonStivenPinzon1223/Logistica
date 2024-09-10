@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assistence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AssistenceController extends Controller
 {
@@ -11,7 +13,9 @@ class AssistenceController extends Controller
      */
     public function index()
     {
-        //
+        $assistences = Assistence::all();
+        $user = Auth::user();
+        return view('assistences.index', compact('assistences', 'user'));
     }
 
     /**
@@ -19,7 +23,8 @@ class AssistenceController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        return view('assistences.create', compact('user'));
     }
 
     /**
@@ -27,15 +32,21 @@ class AssistenceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $assistence = new Assistence();
+        $assistence->name = $request->name;
+        $assistence->save();
+
+        return redirect(route('assistences.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $assistence = Assistence::find($id);
+        $user = Auth::user();
+        return view('assistences.show', compact('assistence', 'user'));
     }
 
     /**
@@ -43,7 +54,9 @@ class AssistenceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $assistence = Assistence::find($id);
+        $user = Auth::user();
+        return view('assistences.edit', compact('assistence', 'user'));
     }
 
     /**
@@ -51,7 +64,11 @@ class AssistenceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $assistence = Assistence::find($id);
+        $assistence->name = $request->name;
+        $assistence->save();
+
+        return redirect(route('assistences.index'));
     }
 
     /**
@@ -59,6 +76,9 @@ class AssistenceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $assistence = Assistence::find($id);
+        $assistence->delete();
+
+        return redirect(route('assistences.index'));
     }
 }

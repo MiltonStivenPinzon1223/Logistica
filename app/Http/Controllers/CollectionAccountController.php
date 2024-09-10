@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CollectionAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CollectionAccountController extends Controller
 {
@@ -11,7 +13,9 @@ class CollectionAccountController extends Controller
      */
     public function index()
     {
-        //
+        $collectionAccounts = CollectionAccount::all();
+        $user = Auth::user();
+        return view('collectionAccounts.index', compact('collectionAccounts', 'user'));
     }
 
     /**
@@ -19,7 +23,8 @@ class CollectionAccountController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        return view('collectionAccounts.create', compact('user'));
     }
 
     /**
@@ -27,15 +32,21 @@ class CollectionAccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $collectionAccount = new CollectionAccount();
+        $collectionAccount->name = $request->name;
+        $collectionAccount->save();
+
+        return redirect(route('collectionAccounts.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $collectionAccount = CollectionAccount::find($id);
+        $user = Auth::user();
+        return view('collectionAccounts.show', compact('collectionAccount', 'user'));
     }
 
     /**
@@ -43,7 +54,9 @@ class CollectionAccountController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $collectionAccount = CollectionAccount::find($id);
+        $user = Auth::user();
+        return view('collectionAccounts.edit', compact('collectionAccount', 'user'));
     }
 
     /**
@@ -51,7 +64,11 @@ class CollectionAccountController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $collectionAccount = CollectionAccount::find($id);
+        $collectionAccount->name = $request->name;
+        $collectionAccount->save();
+
+        return redirect(route('collectionAccounts.index'));
     }
 
     /**
@@ -59,6 +76,9 @@ class CollectionAccountController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $collectionAccount = CollectionAccount::find($id);
+        $collectionAccount->delete();
+
+        return redirect(route('collectionAccounts.index'));
     }
 }
