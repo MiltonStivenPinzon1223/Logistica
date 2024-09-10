@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssistenceController;
 use App\Http\Controllers\AssitenceController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CollectionAccountController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TypeCertificateController;
 use App\Http\Controllers\TypeClothingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
