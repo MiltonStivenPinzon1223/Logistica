@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+//===============NO QUITAR EL MIDDLEWARE================================
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('roles', [RoleController::class,'index'])->name('roles.index');
 Route::resource('assistences', AssistenceController::class)->names('assistences');
