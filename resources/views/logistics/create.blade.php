@@ -1,31 +1,40 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="content">
-    <!-- Sale & Revenue Start -->
-    <div class="container-fluid pt-4 px-4">
-        <div class="bg-primary rounded d-flex align-items-center justify-content-between p-4">
-            <h3>Logisticos</h3>
-        </div>
-            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                <div class="card text-white bg-primary">
-                    <div class="card-body">
-                        <form action="{{route('logistics.store')}}" method="POST">
-                            @csrf
-                            @method('POST')
-                            <div class="mb-3 mt-3">
-                              <label for="name" class="form-label">Logisticos:</label>
-                              <input type="text" class="form-control" id="name" placeholder="Ingrese nombre" name="name">
-                            </div>
-                            <button type="submit" class="btn btn-secondary">Submit</button>
-                        </form>
-                    </div>
+<div class="container-fluid">
+    <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+        
+        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+            <form method="POST" action="{{ route('logistics.store') }}">
+                @csrf
+            <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h3>Registro de logisticos</h3>
                 </div>
-                
+                <div class="form-floating mb-3">
+                    <input id="celular" type="number" class="form-control @error('celular') is-invalid @enderror" name="celular" value="{{ old('celular') }}" required autocomplete="celular" autofocus>
+
+                                @error('celular')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                    <label for="floatingText text-black">Celular</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea id="description" type="number" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="name" autofocus></textarea>
+
+                                @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                    <label for="floatingText text-black">Regalanos una descripción tuya</label>
+                </div>
+                <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Siguiente</button>
             </div>
         </div>
+        </form>
     </div>
-    <!-- Sale & Revenue End -->
-
 </div>
 @endsection
