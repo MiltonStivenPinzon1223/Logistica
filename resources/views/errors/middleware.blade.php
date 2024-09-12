@@ -9,8 +9,8 @@
                 class="card text-white bg-primary"
             >
                 <div class="card-body">
-                    <h4 class="card-title">Error 403</h4>
-                    <p class="card-text">No posses los permisos necesarios para esta ruta.</p>
+                    <h4 class="card-title">Error {{$error}}</h4>
+                    <p class="card-text">{{$message}}</p>
                 </div>
             </div>
             

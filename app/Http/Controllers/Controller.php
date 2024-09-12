@@ -14,7 +14,9 @@ class Controller extends BaseController
     public static function authRoles($rol){
         $user = Auth::user();
         if ($user->id_roles != $rol) {
-            return view('errors.middleware');
+            $error = 403;
+            $message = "No posses los permisos necesarios para esta ruta.";
+            return view('errors.middleware', compact('error', 'message'));
         }
     }
 }
