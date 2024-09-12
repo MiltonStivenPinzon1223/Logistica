@@ -26,7 +26,7 @@
                         @foreach ($assistences as $assistence)
                         <tr class="">
                         <td>{{ $assistence->id}}</td>
-                        <td>{{ $assistence->H}}</td>
+                        <td>{{ $assistence->Hora}}</td>
                         <td>{{ $assistence->events->name}}</td>
                         <td>
                           <div class="btn-group">

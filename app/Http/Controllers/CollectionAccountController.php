@@ -20,7 +20,7 @@ class CollectionAccountController extends Controller
     {
         $collectionAccounts = CollectionAccount::all();
         $user = Auth::user();
-        return view('collectionAccounts.index', compact('collectionAccounts', 'user'));
+        return view('collectionsAccounts.index', compact('collectionAccounts', 'user'));
     }
 
     /**

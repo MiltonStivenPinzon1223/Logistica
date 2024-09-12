@@ -20,15 +20,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($types as $type)
+                        @foreach ($typeClothings as $typeClothing)
                         <tr class="">
-                        <td>{{ $type->id}}</td>
-                        <td>{{ $type->type}}</td>
-                        <td>{{ $type->description}}</td>
+                        <td>{{ $typeClothing->id}}</td>
+                        <td>{{ $typeClothing->type}}</td>
+                        <td>{{ $typeClothing->description}}</td>
                         <td>
                           <div class="btn-group">
-                            <a href="{{route('type.clothings.show', $type->id)}}" type="button" class="btn btn-success">Detalles</a>
-                            <a href="{{route('type.clothings.destroy', $type->id)}}" type="button" class="btn btn-primary">Eliminar</a>
+                            <a href="{{route('type.clothings.show', $typeClothing->id)}}" type="button" class="btn btn-success">Detalles</a>
+                            <a href="{{route('type.clothings.destroy', $typeClothing->id)}}" type="button" class="btn btn-primary">Eliminar</a>
                           </div>
                         </td>
                     </tr>

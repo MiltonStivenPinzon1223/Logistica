@@ -6,7 +6,7 @@
     <div class="container-fluid pt-4 px-4">
         <div class="bg-primary rounded d-flex align-items-center justify-content-between p-4">
             <h3>Cuenta de cobro</h3>
-            <a href="{{route('collection.Accounts.create')}}" type="button" class="btn btn-success">Crear</a>
+            <a href="{{route('collection.accounts.create')}}" type="button" class="btn btn-success">Crear</a>
         </div>
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
             <div class="table-responsive w-100">
@@ -14,20 +14,26 @@
                     <thead>
                         <tr>
                             <th scope="col">#ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Url</th>
+                            <th scope="col">status</th>
+                            <th scope="col">id asistencia</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($types as $type)
+                        @foreach ($collectionAccounts as $collectionAccount)
                         <tr class="">
-                        <td>{{ $type->id}}</td>
-                        <td>{{ $type->name}}</td>
+                        <td>{{ $collectionAccount->id}}</td>
+                        <td>{{ $collectionAccount->price}}</td>
+                        <td>{{ $collectionAccount->url}}</td>
+                        <td>{{ $collectionAccount->status}}</td>
+                        <td>{{ $collectionAccount->id_assistences}}</td>
                         <td>
-                          <div class="btn-group">
-                            <a href="{{route('collection.Accounts.show', $type->id)}}" type="button" class="btn btn-success">Detalles</a>
-                            <a href="{{route('collection.Accounts.destroy', $type->id)}}" type="button" class="btn btn-primary">Eliminar</a>
-                          </div>
+                        <div class="btn-group">
+                            <a href="{{route('collection.accounts.show', $collectionAccount->id)}}" type="button" class="btn btn-success">Detalles</a>
+                            <a href="{{route('collection.accounts.destroy', $collectionAccount->id)}}" type="button" class="btn btn-primary">Eliminar</a>
+                        </div>
                         </td>
                     </tr>
                         @endforeach

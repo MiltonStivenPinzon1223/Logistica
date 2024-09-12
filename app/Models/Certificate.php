@@ -20,7 +20,7 @@ class Certificate extends Model
     ];
     public function certificates()
     {
-        return $this->belongsTo(Certificate::class, 'id_type_certificates');
+        return $this->belongsTo(TypeCertificate::class, 'id_type_certificates');
     }
 
     public function logistics()

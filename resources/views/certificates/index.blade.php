@@ -5,7 +5,7 @@
     <!-- Sale & Revenue Start -->
     <div class="container-fluid pt-4 px-4">
         <div class="bg-primary rounded d-flex align-items-center justify-content-between p-4">
-            <h3>Tipos de Certificados</h3>
+            <h3>Certificados</h3>
             <a href="{{route('certificates.create')}}" type="button" class="btn btn-success">Crear</a>
         </div>
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
@@ -14,20 +14,22 @@
                     <thead>
                         <tr>
                             <th scope="col">#ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">Tipo de certificados</th>
+                            <th scope="col">id logistica</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($types as $type)
+                        @foreach ($certificates as $certificate)
                         <tr class="">
-                        <td>{{ $type->id}}</td>
-                        <td>{{ $type->name}}</td>
+                        <td>{{ $certificate->id}}</td>
+                        <td>{{ $certificate->certificates->name}}</td>
+                        <td>{{ $certificate->logistics->users->name}}</td>
                         <td>
-                          <div class="btn-group">
-                            <a href="{{route('certificates.show', $type->id)}}" type="button" class="btn btn-success">Detalles</a>
-                            <a href="{{route('certificates.destroy', $type->id)}}" type="button" class="btn btn-primary">Eliminar</a>
-                          </div>
+                        <div class="btn-group">
+                            <a href="{{route('certificates.show', $certificate->id)}}" type="button" class="btn btn-success">Detalles</a>
+                            <a href="{{route('certificates.destroy', $certificate->id)}}" type="button" class="btn btn-primary">Eliminar</a>
+                        </div>
                         </td>
                     </tr>
                         @endforeach

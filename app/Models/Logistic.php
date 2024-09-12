@@ -22,7 +22,7 @@ class Logistic extends Model
     ];
     public function  users()
     {
-        return $this->belongsTo(Logistic::class, 'id_users');
+        return $this->belongsTo(User::class, 'id_users');
     }
 
 

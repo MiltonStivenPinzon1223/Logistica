@@ -19,14 +19,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($types as $type)
+                        @foreach ($events as $event)
                         <tr class="">
-                        <td>{{ $type->id}}</td>
-                        <td>{{ $type->name}}</td>
+                        <td>{{ $event->id}}</td>
+                        <td>{{ $event->name}}</td>
                         <td>
                           <div class="btn-group">
-                            <a href="{{route('events.show', $type->id)}}" type="button" class="btn btn-success">Detalles</a>
-                            <a href="{{route('events.destroy', $type->id)}}" type="button" class="btn btn-primary">Eliminar</a>
+                            <a href="{{route('events.show', $event->id)}}" type="button" class="btn btn-success">Detalles</a>
+                            <a href="{{route('events.destroy', $event->id)}}" type="button" class="btn btn-primary">Eliminar</a>
                           </div>
                         </td>
                     </tr>
