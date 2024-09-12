@@ -15,7 +15,8 @@ class TypeCertificate extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'type',
+        'description',
     ];
 
 }

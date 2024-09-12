@@ -37,7 +37,7 @@ class TypeClothingController extends Controller
     public function store(Request $request)
     {
         $typeClothing = new TypeClothing();
-        $typeClothing->name = $request->name;
+        $typeClothing->type = $request->type;
         $typeClothing->description = $request->description;
         $typeClothing->save();
 

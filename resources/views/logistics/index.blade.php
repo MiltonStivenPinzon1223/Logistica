@@ -14,20 +14,24 @@
                     <thead>
                         <tr>
                             <th scope="col">#ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">celular</th>
+                            <th scope="col">descripción</th>
+                            <th scope="col">id user</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($logistics as $logistic)
                         <tr class="">
                         <td>{{ $logistic->id}}</td>
-                        <td>{{ $logistic->name}}</td>
+                        <td>{{ $logistic->celular}}</td>
+                        <td>{{ $logistic->description}}</td>
+                        <td>{{ $logistic->id_users}}</td>
                         <td>
-                          <div class="btn-group">
+                        <div class="btn-group">
                             <a href="{{route('logistics.show', $logistic->id)}}" type="button" class="btn btn-success">Detalles</a>
                             <a href="{{route('logistics.destroy', $logistic->id)}}" type="button" class="btn btn-primary">Eliminar</a>
-                          </div>
+                        </div>
                         </td>
                     </tr>
                         @endforeach

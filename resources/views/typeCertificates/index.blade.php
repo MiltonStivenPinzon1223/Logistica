@@ -24,10 +24,10 @@
                         <td>{{ $type->id}}</td>
                         <td>{{ $type->name}}</td>
                         <td>
-                          <div class="btn-group">
+                        <div class="btn-group">
                             <a href="{{route('type.certificates.show', $type->id)}}" type="button" class="btn btn-success">Detalles</a>
                             <a href="{{route('type.certificates.destroy', $type->id)}}" type="button" class="btn btn-primary">Eliminar</a>
-                          </div>
+                        </div>
                         </td>
                     </tr>
                         @endforeach
