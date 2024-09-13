@@ -27,7 +27,7 @@ class Event extends Model
     ];
     public function type_clothing()
     {
-        return $this->belongsTo(Event::class, 'id_type_clothing');
+        return $this->belongsTo(TypeClothing::class, 'id_type_clothing');
     }
     public function users()
     {

@@ -35,8 +35,14 @@
                                         <p class="card-text"><b>Hora de fin:</b>{{$event->end}}</p>
                                         <p class="card-text"><b>Cupos:</b>{{$event->quotas}}</p>
                                         <p class="card-text"><b>Descripción:</b>{{$event->description}}</p>
-                                        <p class="card-text"><b>Tipo de vestimenta:</b>{{$event->type_clothing->type}}</p>
+                                        <p class="card-text"><b>Tipo de vestimenta:</b>{{$event->type_clothing->type}} ({{$event->type_clothing->description}} )</p>
                                         <p class="card-text"><b>Organizador:</b>{{$event->users->name}}</p>
+                                        <form action="{{route('assistences.store')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="id_logistics" value="{{$user->id}}">
+                                            <input type="hidden" name="id_events" value="{{$event->id}}">
+                                            <input type="submit" value="Postularse!" class="btn btn-secondary">
+                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -5,8 +5,10 @@
     <!-- Sale & Revenue Start -->
     <div class="container-fluid pt-4 px-4">
         <div class="bg-primary rounded d-flex align-items-center justify-content-between p-4">
-            <h3>Tipos de Asistencia</h3>
-            <a href="{{route('assistences.create')}}" type="button" class="btn btn-success">Crear</a>
+            <h3>Solicitudes</h3>
+            @if ($user->id_roles == 2)
+                <a href="{{route('assistences.create')}}" type="button" class="btn btn-success">Crear</a>
+            @endif
         </div>
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
             <div class="table-responsive w-100">
@@ -14,24 +16,40 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Hora</th>
+                            <th scope="col">Ingreso</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Id evento</th>
                             <th scope="col">Nombre evento</th>
-                            <th scope="col">Id logistico</th>
                             <th scope="col">Nombre Logistico</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($assistences as $assistence)
                         <tr class="">
                         <td>{{ $assistence->id}}</td>
-                        <td>{{ $assistence->Hora}}</td>
+                        <td>{{ $assistence->updated_at}}</td>
+                        <td>{{ $assistence->staus}}</td>
+                        @if ($assistence->status == 1)
+                        <td>EN PROCESO</td>
+                        @endif
+                        @if ($assistence->status == 2)
+                        <td>CONFIRMADO</td>
+                        @endif
+                        @if ($assistence->status == 3)
+                        <td>RECHAZADO</td>
+                        @endif
                         <td>{{ $assistence->events->name}}</td>
+                        <td>{{ $assistence->logistics->users->name}}</td>
                         <td>
                           <div class="btn-group">
-                            <a href="{{route('assistences.show', $assistence->id)}}" type="button" class="btn btn-success">Detalles</a>
-                            <a href="{{route('assistences.destroy', $assistence->id)}}" type="button" class="btn btn-primary">Eliminar</a>
+                            @if ($user->id_roles == 2)
+                                <a href="{{route('assistences.create')}}" type="button" class="btn btn-success">Crear</a>
+                            @endif
+                            <form action="{{route('assistences.destroy', $assistence->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Eliminar" class="btn btn-primary">
+                            </form>
                           </div>
                         </td>
                     </tr>
