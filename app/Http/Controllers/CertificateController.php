@@ -16,10 +16,16 @@ class CertificateController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() 
     {
-        $certificates = Certificate::all();
         $user = Auth::user();
+        if ($user->id_roles == 1) {
+            $certificates = Certificate::where('user_id',$user->id);
+        }else
+        {
+            $certificates = Certificate::all();
+
+        }
         return view('certificates.index', compact('certificates', 'user'));
     }
 
