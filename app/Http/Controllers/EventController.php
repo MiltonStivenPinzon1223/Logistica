@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\TypeClothing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +29,8 @@ class EventController extends Controller
     public function create()
     {
         $user = Auth::user();
-        return view('events.create', compact('user'));
+        $types = TypeClothing::all();
+        return view('events.create', compact('user', 'types'));
     }
 
     /**
@@ -36,13 +38,24 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $event = new Event();
-        $event->name = $request->name;
-        $event->date = $request->date;
-        $event->location = $request->location;
-        $event->save();
+        // Validación de los datos del formulario
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'date' => 'required|date|after:today',
+            'start' => 'required|date_format:H:i', // Validar que el formato sea de hora (24h)
+            'end' => 'required|date_format:H:i|after_or_equal:start', // Validar que sea igual o después de start
+            'address' => 'required|string|max:255',
+            'quotas' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'id_type_clothing' => 'required|string|max:255|exists:type_clothing,id', // Asegúrate de que exista en la tabla correspondiente
+        ]);
 
-        return redirect(route('events.index'));
+        $validatedData['id_users'] = Auth::user()->id;
+        
+        // Crear el evento con los datos validados
+        Event::create($validatedData);
+
+        return redirect()->route('events.index')->with('success', 'Evento creado exitosamente.');
     }
 
     /**

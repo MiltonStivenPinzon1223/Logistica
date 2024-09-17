@@ -24,10 +24,10 @@
                         <td>{{ $event->id}}</td>
                         <td>{{ $event->name}}</td>
                         <td>
-                          <div class="btn-group">
+                        <div class="btn-group">
                             <a href="{{route('events.show', $event->id)}}" type="button" class="btn btn-success">Detalles</a>
                             <a href="{{route('events.destroy', $event->id)}}" type="button" class="btn btn-primary">Eliminar</a>
-                          </div>
+                        </div>
                         </td>
                     </tr>
                         @endforeach
