@@ -63,8 +63,8 @@
                     @if ($user->id_roles == 1)
                         <a href="{{route('assistences.show', $user->id)}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>
                         <a href="{{route('certificates.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mis certificados</a>
-                        <a href="{{route('home')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mis solicitudes</a>
-                        <a href="{{route('home')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mi perfil</a>
+                        <a href="{{route('assistences.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mis solicitudes</a>
+                        <a href="{{route('profile')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mi perfil</a>
                     @endif
                     @if ($user->id_roles == 2)
                         <a href="{{route('home')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>

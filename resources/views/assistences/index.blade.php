@@ -28,7 +28,6 @@
                         <tr class="">
                         <td>{{ $assistence->id}}</td>
                         <td>{{ $assistence->updated_at}}</td>
-                        <td>{{ $assistence->staus}}</td>
                         @if ($assistence->status == 1)
                         <td>EN PROCESO</td>
                         @endif
