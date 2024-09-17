@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('/profile/edit', [HomeController::class, 'profileEdit'])->name('profile.edit');
-Route::post('/profile', [HomeController::class, 'profileUpdate'])->name('profile.update');
+Route::put('/profile', [HomeController::class, 'profileUpdate'])->name('profile.update');
 Route::get('roles', [RoleController::class,'index'])->name('roles.index');
 Route::resource('assistences', AssistenceController::class)->names('assistences');
 Route::resource('certificates', CertificateController::class)->names('certificates');

@@ -8,6 +8,8 @@ use App\Models\Logistic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class HomeController extends Controller
 {
@@ -33,7 +35,6 @@ class HomeController extends Controller
             $logistic = Logistic::where('id_users', '=', $user->id)->first();
             $assistedEventIds = Assistence::where('id_logistics','=', $logistic->id)->get()->pluck('id_events');
             // Obtener eventos futuros donde el usuario no se ha postulado
-            // return $assistedEventIds;
             $events = Event::where('date', '>', date('Y-m-d'))
                             ->whereNotIn('id', $assistedEventIds)
                             ->get();
@@ -48,11 +49,40 @@ class HomeController extends Controller
 
     public function profileEdit(){
         $user = Auth::user();
-        return view('auth.profile', compact('user'));
+        $logistic = Logistic::where('id_users', $user->id)->first();
+        return view('auth.edit', compact('user', 'logistic'));
     }
 
-    public function profileUpdate(){
+    public function profileUpdate(Request $request)
+    {
         $user = Auth::user();
-        return view('auth.profile', compact('user'));
+        $logistic = Logistic::where('id_users', $user->id)->first();
+        // Validar los datos del usuario
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'celular' => 'required|integer',
+            'document' => [
+                'required',
+                'integer',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($user->id),
+            ]
+        ]);
+
+        // Actualizar los datos del usuario
+        $user->update([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'description' => $validatedData['description'],
+            'password' => isset($validatedData['password']) ? Hash::make($validatedData['password']) : $user->password,
+        ]);
+
+        // Retornar respuesta o redirección
+        return redirect()->route('profile')->with('success', 'Datos personales actualizados exitosamente.');
     }
 }
