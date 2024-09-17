@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Certificate;
+use App\Models\Logistic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,11 +17,12 @@ class CertificateController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() 
+    public function index()
     {
         $user = Auth::user();
         if ($user->id_roles == 1) {
-            $certificates = Certificate::where('user_id',$user->id);
+            $logistic = Logistic::where('id_users', $user->id)->first();
+            $certificates = Certificate::where('id_logistics',$logistic->id)->get();
         }else
         {
             $certificates = Certificate::all();

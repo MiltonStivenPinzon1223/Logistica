@@ -40,4 +40,19 @@ class HomeController extends Controller
             return view('home', compact('user', 'events'));
         }
     }
+
+    public function profile(){
+        $user = Auth::user();
+        return view('auth.profile', compact('user'));
+    }
+
+    public function profileEdit(){
+        $user = Auth::user();
+        return view('auth.profile', compact('user'));
+    }
+
+    public function profileUpdate(){
+        $user = Auth::user();
+        return view('auth.profile', compact('user'));
+    }
 }

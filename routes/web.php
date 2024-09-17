@@ -5,6 +5,7 @@ use App\Http\Controllers\AssitenceController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CollectionAccountController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TypeCertificateController;
@@ -20,7 +21,10 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+Route::get('/profile/edit', [HomeController::class, 'profileEdit'])->name('profile.edit');
+Route::post('/profile', [HomeController::class, 'profileUpdate'])->name('profile.update');
 Route::get('roles', [RoleController::class,'index'])->name('roles.index');
 Route::resource('assistences', AssistenceController::class)->names('assistences');
 Route::resource('certificates', CertificateController::class)->names('certificates');
