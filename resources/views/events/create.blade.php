@@ -1,31 +1,153 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="content">
-    <!-- Sale & Revenue Start -->
-    <div class="container-fluid pt-4 px-4">
-        <div class="bg-primary rounded d-flex align-items-center justify-content-between p-4">
-            <h3>Eventos</h3>
-        </div>
-            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                <div class="card text-white bg-primary">
-                    <div class="card-body">
-                        <form action="{{route('events.store')}}" method="POST">
-                            @csrf
-                            @method('POST')
-                            <div class="mb-3 mt-3">
-                              <label for="name" class="form-label">Evento:</label>
-                              <input type="text" class="form-control" id="name" placeholder="Ingrese nombre" name="name">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Crear Evento') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('events.store') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre del Evento') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <button type="submit" class="btn btn-secondary">Submit</button>
-                        </form>
-                    </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha del Evento') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="date" type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{ old('date') }}" required>
+
+                                @error('date')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="start" class="col-md-4 col-form-label text-md-right">{{ __('Inicio') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="start" type="time" class="form-control @error('start') is-invalid @enderror" name="start" value="{{ old('start') }}" required>
+
+                                @error('start')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="end" class="col-md-4 col-form-label text-md-right">{{ __('Fin') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="end" type="time" class="form-control @error('end') is-invalid @enderror" name="end" value="{{ old('end') }}" required>
+
+                                @error('end')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Dirección') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
+
+                                @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="quotas" class="col-md-4 col-form-label text-md-right">{{ __('Cuotas') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="quotas" type="text" class="form-control @error('quotas') is-invalid @enderror" name="quotas" value="{{ old('quotas') }}" required>
+
+                                @error('quotas')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="description" rows="3" class="form-control @error('description') is-invalid @enderror" name="description" required>{{ old('description') }}</textarea>
+
+                                @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Aquí puedes agregar selectores para los IDs de tipo de ropa y usuarios -->
+                        <!-- Suponiendo que tienes listas de tipos de ropa y usuarios -->
+                        
+                        <!-- ID Tipo de Ropa -->
+                        <div class='form-group row'>
+                            <label for='id_type_clothing' class='col-md-4 col-form-label text-md-right'>{{ __('Tipo de Ropa ID') }}</label>
+                            
+                            <div class='col-md-6'>
+                                <!-- Suponiendo que tienes una colección de tipos de ropa -->
+                                <!-- Reemplaza 'type_clothings' con tu colección real -->
+                                <select id='id_type_clothing' name='id_type_clothing' class='form-control'>
+
+                                    @foreach($types as $type)
+                                        <option value="{{ $type->id }}">{{ $type->type }}</option>
+                                    @endforeach 
+
+                                </select>
+
+                                @error('id_type_clothing')
+                                    <span class='invalid-feedback' role='alert'>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <!-- Botón para enviar -->
+                        <div class='form-group row mb-0'>
+                            <div class='col-md-6 offset-md-4'>
+                                <button type='submit' class='btn btn-primary'>
+                                    {{ __('Crear Evento') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                
             </div>
         </div>
     </div>
-    <!-- Sale & Revenue End -->
-
 </div>
 @endsection
