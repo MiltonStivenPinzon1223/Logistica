@@ -3,7 +3,6 @@
 @section('content')
 <div class="content">
     <div class="container-fluid pt-4 px-4">
-        @if ($user->id_roles == 1)
     <div class="row">
         <div class="col-12">
             <div class="card text-white bg-secondary">
@@ -16,7 +15,6 @@
             </div>
         </div>
     </div>
-    @endif
     </div>
 
     <!-- Footer Start -->

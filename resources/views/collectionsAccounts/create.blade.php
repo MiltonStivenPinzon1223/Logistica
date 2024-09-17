@@ -1,31 +1,46 @@
+<!-- resources/views/collectionaccounts/create.blade.php -->
+
 @extends('layouts.app')
 
 @section('content')
-<div class="content">
-    <!-- Sale & Revenue Start -->
-    <div class="container-fluid pt-4 px-4">
-        <div class="bg-primary rounded d-flex align-items-center justify-content-between p-4">
-            <h3>Cuentas De Cobro</h3>
-        </div>
-            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                <div class="card text-white bg-primary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Create New Collection Account</div>
+
                     <div class="card-body">
-                        <form action="{{route('collection.Accounts.store')}}" method="POST">
+                        <form method="POST" action="{{ route('collectionaccounts.store') }}">
                             @csrf
-                            @method('POST')
-                            <div class="mb-3 mt-3">
-                              <label for="name" class="form-label">Cuenta de cobro:</label>
-                              <input type="text" class="form-control" id="name" placeholder="Ingrese nombre" name="name">
+                            <div class="form-group">
+                                <label for="price">Price:</label>
+                                <input type="number" class="form-control" id="price" name="price" required>
                             </div>
-                            <button type="submit" class="btn btn-secondary">Submit</button>
+
+                            <div class="form-group">
+                                <label for="url">URL:</label>
+                                <input type="text" class="form-control" id="url" name="url" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="status">Status:</label>
+                                <select class="form-control" id="status" name="status" required>
+                                    <option value="">Select Status</option>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_assistences">ID Assistances:</label>
+                                <input type="number" class="form-control" id="id_assistences" name="id_assistences">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Create Collection Account</button>
                         </form>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
-    <!-- Sale & Revenue End -->
-
-</div>
 @endsection

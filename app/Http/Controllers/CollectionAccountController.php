@@ -2,88 +2,71 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CollectionAccount;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\CollectionAccount;
 
 class CollectionAccountController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $collectionAccounts = CollectionAccount::all();
-        $user = Auth::user();
-        return view('collectionsAccounts.index', compact('collectionAccounts', 'user'));
+        return view('collectionaccounts.index', compact('collectionAccounts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $user = Auth::user();
-        return view('collectionAccounts.create', compact('user'));
+        return view('collectionaccounts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $collectionAccount = new CollectionAccount();
-        $collectionAccount->name = $request->name;
-        $collectionAccount->save();
+        $validatedData = $request->validate([
+            'price' => 'required',
+            'url' => 'required|unique:collection_accounts,url',
+            'status' => 'required|string|max:255',
+            'id_assistences' => 'nullable|numeric',
+        ]);
 
-        return redirect(route('collectionAccounts.index'));
+        CollectionAccount::create($validatedData);
+
+        return redirect()->route('collectionaccounts.index')
+                        ->with('success', 'Collection account created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
-        $collectionAccount = CollectionAccount::find($id);
-        $user = Auth::user();
-        return view('collectionAccounts.show', compact('collectionAccount', 'user'));
+        $collectionAccount = CollectionAccount::findOrFail($id);
+        return view('collectionaccounts.show', compact('collectionAccount'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit($id)
     {
-        $collectionAccount = CollectionAccount::find($id);
-        $user = Auth::user();
-        return view('collectionAccounts.edit', compact('collectionAccount', 'user'));
+        $collectionAccount = CollectionAccount::findOrFail($id);
+        return view('collectionaccounts.edit', compact('collectionAccount'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $collectionAccount = CollectionAccount::find($id);
-        $collectionAccount->name = $request->name;
-        $collectionAccount->save();
+        $validatedData = $request->validate([
+            'price' => 'required',
+            'url' => 'required|unique:collection_accounts,url',
+            'status' => 'required|string|max:255',
+            'id_assistences' => 'nullable|numeric',
+        ]);
 
-        return redirect(route('collectionAccounts.index'));
+        $collectionAccount = CollectionAccount::findOrFail($id);
+        $collectionAccount->update($validatedData);
+
+        return redirect()->route('collectionaccounts.index')
+                        ->with('success', 'Collection account updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        $collectionAccount = CollectionAccount::find($id);
+        $collectionAccount = CollectionAccount::findOrFail($id);
         $collectionAccount->delete();
 
-        return redirect(route('collectionAccounts.index'));
+        return redirect()->route('collectionaccounts.index')
+                        ->with('success', 'Collection account deleted successfully.');
     }
 }
