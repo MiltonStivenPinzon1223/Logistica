@@ -44,7 +44,8 @@ class HomeController extends Controller
 
     public function profile(){
         $user = Auth::user();
-        return view('auth.profile', compact('user'));
+        $logistic = Logistic::where('id_users', $user->id)->first();
+        return view('auth.profile', compact('user','logistic'));
     }
 
     public function profileEdit(){
@@ -78,8 +79,12 @@ class HomeController extends Controller
         $user->update([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
-            'description' => $validatedData['description'],
+            'document' => $validatedData['document'],
             'password' => isset($validatedData['password']) ? Hash::make($validatedData['password']) : $user->password,
+        ]);
+        $logistic->update([
+            'celular' => $validatedData['celular'],
+            'description' => $validatedData['description']
         ]);
 
         // Retornar respuesta o redirección

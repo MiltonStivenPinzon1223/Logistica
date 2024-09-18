@@ -9,7 +9,9 @@
                 <div class="card-body">
                     <h4 class="card-title">{{$user->name}}</h4>
                     <p class="card-text">Rol: {{$user->roles->rol}}</p>
-                    <p class="card-text">Descripcion: {{$user->logistics->description}}</p>
+                    <p class="card-text">Documento: {{$user->document}}</p>
+                    <p class="card-text">Descripcion: {{$logistic->description}}</p>
+                    <p class="card-text">Celular: {{$logistic->celular}}</p>
                     <a class="btn btn-success" href="{{route('profile.edit')}}" role="button" >Editar información</a>
                 </div>
             </div>
