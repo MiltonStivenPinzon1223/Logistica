@@ -73,9 +73,10 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
+        $types = TypeClothing::all();
         $event = Event::find($id);
         $user = Auth::user();
-        return view('events.edit', compact('event', 'user'));
+        return view('events.edit', compact('event', 'user', 'types'));
     }
 
     /**

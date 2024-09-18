@@ -66,10 +66,10 @@
                         <a href="{{route('assistences.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mis solicitudes</a>
                     @endif
                     @if ($user->id_roles == 2)
-                        <a href="{{route('ass')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>
-                        <a href="{{route('home')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Asistencias</a>
-                        <a href="{{route('home')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Solicitudes</a>
-                        <a href="{{route('home')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mi perfil</a>
+                        <a href="{{route('events.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>
+                        <a href="{{route('assistences.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Asistencias</a>
+                        <a href="{{route('assistences.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Solicitudes</a>
+                        <a href="{{route('profile')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mi perfil</a>
                     @endif
                     @if ($user->id_roles == 3)
                     <div class="nav-item dropdown">
