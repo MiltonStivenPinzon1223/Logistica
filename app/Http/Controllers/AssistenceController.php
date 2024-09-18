@@ -30,7 +30,6 @@ class AssistenceController extends Controller
         }
         return view('assistences.index', compact('assistences', 'user'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -39,7 +38,6 @@ class AssistenceController extends Controller
         $user = Auth::user();
         return view('assistences.create', compact('user'));
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -52,19 +50,14 @@ class AssistenceController extends Controller
             'id_events' => 'required|integer|exists:events,id',
             'id_logistics' => 'required|integer|exists:logistics,id',
         ]);
-
-
-
         $assistence = new Assistence();
         $assistence->hour = Carbon::now();
         $assistence->status = 1;
         $assistence->id_events = $request->id_events;
         $assistence->id_logistics = $request->id_logistics;
         $assistence->save();
-
         return redirect(route('assistences.index'));
     }
-
     /**
      * Display the specified resource.
      */
@@ -79,7 +72,6 @@ class AssistenceController extends Controller
         }
         return view('assistences.show', compact('assistences', 'user'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -89,7 +81,6 @@ class AssistenceController extends Controller
         $user = Auth::user();
         return view('assistences.edit', compact('assistence', 'user'));
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -98,10 +89,8 @@ class AssistenceController extends Controller
         $assistence = Assistence::find($id);
         $assistence->name = $request->name;
         $assistence->save();
-
         return redirect(route('assistences.index'));
     }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -109,7 +98,6 @@ class AssistenceController extends Controller
     {
         $assistence = Assistence::find($id);
         $assistence->delete();
-
-        return redirect(route('assistences.index'));
+        return redirect(route('event.index'));
     }
 }

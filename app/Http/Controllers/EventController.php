@@ -84,11 +84,20 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $event = Event::find($id);
-        $event->name = $request->name;
-        $event->date = $request->date;
-        $event->location = $request->location;
-        $event->save();
+        $event=Event::find($id);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'date' => 'required|date|after:today',
+            'start' => 'required|date_format:H:i:s', // Validar que el formato sea de hora (24h)
+            'end' => 'required|date_format:H:i:s|after_or_equal:start', // Validar que sea igual o después de start
+            'address' => 'required|string|max:255',
+            'quotas' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'id_type_clothing' => 'required|string|max:255|exists:type_clothing,id', // Asegúrate de que exista en la tabla correspondiente
+        ]);
+
+        $validatedData['id_users'] = Auth::user()->id;
+        $event->update($validatedData);
 
         return redirect(route('events.index'));
     }
@@ -99,8 +108,14 @@ class EventController extends Controller
     public function destroy(string $id)
     {
         $event = Event::find($id);
+    {if ($event) {
+        return response()->json(['message' => 'Evento no encontrado'], 404);
+        }
+    }
         $event->delete();
-
+        return response()->json(['message' => 'Evento eliminado correctamente'], 200);
+        $validatedData['id_users'] = Auth::user()->id;
+        $event->destroy($validatedData);
         return redirect(route('events.index'));
     }
 }
