@@ -108,10 +108,10 @@ class EventController extends Controller
     public function destroy(string $id)
     {
         $event = Event::find($id);
-    {if ($event) {
-        return response()->json(['message' => 'Evento no encontrado'], 404);
-        }
-    }
+    // {if ($event) {
+    //     return response()->json(['message' => 'Evento no encontrado'], 404);
+    //     }
+    // }
         $event->delete();
         return response()->json(['message' => 'Evento eliminado correctamente'], 200);
         $validatedData['id_users'] = Auth::user()->id;

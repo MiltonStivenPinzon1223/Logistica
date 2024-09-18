@@ -26,7 +26,11 @@
                         <td>
                         <div class="btn-group">
                             <a href="{{route('events.show',     $event->id)}}" type="button" class="btn btn-success">Detalles</a>
-                            <a href="{{route('events.destroy',  $event->id)}}" type="button" class="btn btn-primary">Eliminar</a>
+                            <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
                         </div>
                         </td>
                     </tr>
