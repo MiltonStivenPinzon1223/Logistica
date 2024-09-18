@@ -32,7 +32,7 @@
                         <td>{{ $assistence->events->name}}</td>
                         <td>{{ $assistence->logistics->users->name}}</td>
                         <td>
-                          <div class="btn-group">
+                        <div class="btn-group">
                             @if ($user->id_roles == 2)
                                 <a href="{{route('assistences.create')}}" type="button" class="btn btn-success">Crear</a>
                             @endif
@@ -41,7 +41,7 @@
                                 @method('DELETE')
                                 <input type="submit" value="Eliminar" class="btn btn-primary">
                             </form>
-                          </div>
+                        </div>
                         </td>
                     </tr>
                         @endforeach

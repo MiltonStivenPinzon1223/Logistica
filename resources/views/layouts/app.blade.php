@@ -66,7 +66,7 @@
                         <a href="{{route('assistences.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mis solicitudes</a>
                     @endif
                     @if ($user->id_roles == 2)
-                        <a href="{{route('home')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>
+                        <a href="{{route('ass')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>
                         <a href="{{route('home')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Asistencias</a>
                         <a href="{{route('home')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Solicitudes</a>
                         <a href="{{route('home')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mi perfil</a>
@@ -83,8 +83,8 @@
                     @endif
                     <a href="{{route('profile')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mi perfil</a>
                     <a class="nav-item nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                     <i class="fa fa-window-close me-2"></i>Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
