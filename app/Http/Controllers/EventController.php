@@ -105,17 +105,29 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $event = Event::find($id);
-    // {if ($event) {
-    //     return response()->json(['message' => 'Evento no encontrado'], 404);
-    //     }
-    // }
-        $event->delete();
-        return response()->json(['message' => 'Evento eliminado correctamente'], 200);
-        $validatedData['id_users'] = Auth::user()->id;
-        $event->destroy($validatedData);
-        return redirect(route('events.index'));
+    public function destroy(string $id) {
+        try {
+            // Buscar el evento
+            $event = Event::find($id);
+            // Verificar si el evento existe
+            if (!$event) {
+                $error = 404;
+                $message = "El evento no se encontro";
+                return view('errors.encontro', compact('error', 'message'));
+            }
+            // Intentar eliminar el evento
+            $event->delete();
+            // Si la eliminación es exitosa
+            $message = "Evento eliminado correctamente";
+            return view('errors.exitosa', compact('message'));
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Si hay una violación de la restricción de clave foránea, enviar mensaje de error
+            if ($e->getCode() == 23000) {
+                $error = 400;
+            $message = "Error al intentar eliminar el evento, ya que esta relacionada con otros registros";
+            return view('errors.middleware', compact('error', 'message'));
+            }
+        }
     }
+    
 }
