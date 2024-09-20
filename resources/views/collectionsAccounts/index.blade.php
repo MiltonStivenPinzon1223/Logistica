@@ -1,13 +1,14 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+<div class="content">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">List of Collection Accounts</div>
 
                     <div class="card-body">
-                        <a href="{{ route('collectionaccounts.create') }}" class="btn btn-primary mb-3">Create New Collection Account</a>
+                        <a href="{{ route('collection.accounts.create') }}" class="btn btn-primary mb-3">Create New Collection Account</a>
 
                         @if (session('success'))
                             <div class="alert alert-success" role="alert">
@@ -35,8 +36,8 @@
                                         <td>{{ $account->status }}</td>
                                         <td>{{ $account->id_assistences }}</td>
                                         <td>
-                                            <a href="{{ route('collectionaccounts.edit', $account->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                            <form action="{{ route('collectionaccounts.destroy', $account->id) }}" method="POST" style="display: inline-block;">
+                                            <a href="{{ route('collection.accounts.edit', $account->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                            <form action="{{ route('collection.accounts.destroy', $account->id) }}" method="POST" style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
@@ -51,4 +52,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

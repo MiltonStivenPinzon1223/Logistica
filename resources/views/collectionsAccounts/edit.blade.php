@@ -10,7 +10,7 @@
                     <div class="card-header">Edit Collection Account</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('collectionaccounts.update', $collectionAccount->id) }}">
+                        <form method="POST" action="{{ route('collections.accounts.update', $collectionAccount->id) }}">
                             @csrf
                             @method('PUT')
                             
