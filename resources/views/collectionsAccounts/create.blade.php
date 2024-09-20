@@ -10,7 +10,7 @@
                     <div class="card-header">Create New Collection Account</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('collectionaccounts.store') }}">
+                        <form method="POST" action="{{ route('collection.accounts.store') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="price">Price:</label>

@@ -29,8 +29,8 @@
                             <dd class="col-sm-8">{{ $collectionAccount->id_assistences }}</dd>
                         </dl>
 
-                        <a href="{{ route('collectionaccounts.edit', $collectionAccount->id) }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ route('collectionaccounts.destroy', $collectionAccount->id) }}" method="POST" style="display: inline-block;">
+                        <a href="{{ route('collection.accounts.edit', $collectionAccount->id) }}" class="btn btn-primary">Edit</a>
+                        <form action="{{ route('collection.accounts.destroy', $collectionAccount->id) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
