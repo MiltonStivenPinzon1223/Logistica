@@ -68,6 +68,13 @@ class EventController extends Controller
         return view('events.show', compact('event', 'user'));
     }
 
+    public function postulations($id)
+    {
+        $assistences= Assistence::where('id', $id)
+        ->where('status', '!=', 4)  // Trae todos los que no tengan status = 4
+        ->get();
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
