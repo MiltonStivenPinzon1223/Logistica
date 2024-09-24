@@ -45,7 +45,7 @@ class EventController extends Controller
             'start' => 'required|date_format:H:i', // Validar que el formato sea de hora (24h)
             'end' => 'required|date_format:H:i|after_or_equal:start', // Validar que sea igual o después de start
             'address' => 'required|string|max:255',
-            'quotas' => 'required|string|max:255',
+            'quotas' => 'requ       ired|string|max:255',
             'description' => 'required|string|max:255',
             'id_type_clothing' => 'required|string|max:255|exists:type_clothing,id', // Asegúrate de que exista en la tabla correspondiente
         ]);
@@ -70,7 +70,7 @@ class EventController extends Controller
 
     public function postulations($id)
     {
-        $assistences= Assistence::where('id', $id)
+        $assistencesq= Assistence::where('id', $id)
         ->where('status', '!=', 4)  // Trae todos los que no tengan status = 4
         ->get();
     }
