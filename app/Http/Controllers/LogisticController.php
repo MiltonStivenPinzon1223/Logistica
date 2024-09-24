@@ -92,10 +92,27 @@ class LogisticController extends Controller
      */
     public function destroy(string $id)
     {
-        $response = Controller::authRoles(2);
-        if ($response) {return $response;}
-        $logistic = Logistic::find($id);
-        $logistic->delete();
-        return redirect(route('logistics.index'));
+        try {
+            // Buscar el logistico
+            $logistic = Logistic::find($id);
+            // Verificar si el logistico existe
+            if (!$logistic) {
+                $error = 404;
+                $message = "El logistico no se encontro";
+                return view('errors.encontro', compact('error', 'message'));
+            }
+            // Intentar eliminar el logistico
+            $logistic->delete();
+            // Si la eliminación es exitosa
+            $message = "logistico eliminado correctamente";
+            return view('errors.exitosa', compact('message'));
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Si hay una violación de la restricción de clave foránea, enviar mensaje de error
+            if ($e->getCode() == 23000) {
+                $error = 400;
+            $message = "Error al intentar eliminar el logistico, ya que esta relacionada con otros registros";
+            return view('errors.middleware', compact('error', 'message'));
+            }
+        }
     }
 }

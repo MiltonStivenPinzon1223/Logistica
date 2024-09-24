@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -9,7 +10,32 @@
             <a href="{{route('type.certificates.edit', $type->id)}}" type="button" class="btn btn-success">Editar</a>
         </div>
     </div>
-    <!-- Sale & Revenue End -->
+    <div class="container p-5">
+        <div
+        class="card text-dark bg.ligth ">
+        <div class="card-body">
+            <tbody>
+                <tr class="">
+                <p>Id del tipo de certificados: <td>{{ $type->id}}</td></p>
+                <br>
+                <p>Nombre: <td>{{ $type->name}}</td></p>
+                <br>
+                <p>Creado la fecha: <td>{{ $type->created_at}}</td></p>
+                <br>
+                <p>Actualizado en la fecha: <td>{{ $type->updated_at}}</td></p>
+                <td>
+                <div class="btn-group">
+                </div>
+                </td>
+                </tr>
+                </tbody>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Sale & Revenue End -->
 
 </div>
 @endsection

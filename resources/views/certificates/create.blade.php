@@ -14,18 +14,16 @@
                             @csrf
                             @method('POST')
                             <div class="mb-3 mt-3">
-                            <label for="name" class="form-label">Tipo de Certificado:</label>
+                            <label for="name" class="form-label">Certificado:</label>
                             <input type="text" class="form-control" id="name" placeholder="Ingrese nombre" name="name">
                             </div>
                             <button type="submit" class="btn btn-secondary">Submit</button>
                         </form>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
     <!-- Sale & Revenue End -->
-
 </div>
 @endsection

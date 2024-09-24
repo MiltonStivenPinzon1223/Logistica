@@ -96,8 +96,27 @@ class AssistenceController extends Controller
      */
     public function destroy(string $id)
     {
-        $assistence = Assistence::find($id);
-        $assistence->delete();
-        return redirect(route('event.index'));
+        try {
+            // Buscar el Asistencia
+            $assistence = Assistence::find($id);
+            // Verificar si el Asistencia existe
+            if (!$assistence) {
+                $error = 404;
+                $message = "La asistencia no se encontro";
+                return view('errors.encontro', compact('error', 'message'));
+            }
+            // Intentar eliminar el Asistencia
+            $assistence->delete();
+            // Si la eliminación es exitosa
+            $message = "Asistencia eliminada correctamente";
+            return view('errors.exitosa', compact('message'));
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Si hay una violación de la restricción de clave foránea, enviar mensaje de error
+            if ($e->getCode() == 23000) {
+                $error = 400;
+            $message = "Error al intentar eliminar la asistencia, ya que esta relacionada con otros registros";
+            return view('errors.middleware', compact('error', 'message'));
+            }
+        }
     }
 }

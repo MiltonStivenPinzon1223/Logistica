@@ -70,11 +70,27 @@ class CollectionAccountController extends Controller
 
     public function destroy($id)
     {
-        $user = Auth::user();
-        $collectionAccount = CollectionAccount::findOrFail($id);
-        $collectionAccount->delete();
-
-        return redirect()->route('collectionsAccounts.index')
-                        ->with('success', 'Collection account deleted successfully.');
+        try {
+            // Buscar el cuenta de cobro
+            $collectionAccount = CollectionAccount::find($id);
+            // Verificar si el cuenta de cobro existe
+            if (!$collectionAccount) {
+                $error = 404;
+                $message = "La cuenta de cobro no se encontro";
+                return view('errors.encontro', compact('error', 'message'));
+            }
+            // Intentar eliminar el cuenta de cobro
+            $collectionAccount->delete();
+            // Si la eliminación es exitosa
+            $message = "cuenta de cobro eliminada correctamente";
+            return view('errors.exitosa', compact('message'));
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Si hay una violación de la restricción de clave foránea, enviar mensaje de error
+            if ($e->getCode() == 23000) {
+                $error = 400;
+            $message = "Error al intentar eliminar la cuenta de cobro, ya que esta relacionada con otros registros";
+            return view('errors.middleware', compact('error', 'message'));
+            }
+        }
     }
 }

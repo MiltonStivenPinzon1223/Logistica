@@ -37,6 +37,7 @@ class CertificateController extends Controller
     public function create()
     {
         $user = Auth::user();
+        $types = Certificate::all();
         return view('certificates.create', compact('user'));
     }
 
@@ -45,11 +46,18 @@ class CertificateController extends Controller
      */
     public function store(Request $request)
     {
-        $certificate = new Certificate();
-        $certificate->name = $request->name;
-        $certificate->save();
+        // Validación de los datos del formulario
+        $validatedData = $request->validate([
+            'id_type_certificate' => 'required|integer|exists:type_certificates,id', // Valida que exista en la tabla de certificates
+            'id_logistics' => 'required|integer|exists:logistics,id', // Valida que exista en la tabla de logistics
+        ]);
 
-        return redirect(route('certificates.index'));
+        $validatedData['id_users'] = Auth::user()->id;
+        
+        // Crear el evento con los datos validados
+        certificate::create($validatedData);
+
+        return redirect()->route('certificates.index')->with('success', 'Evento creado exitosamente.');
     }
 
     /**
@@ -89,9 +97,27 @@ class CertificateController extends Controller
      */
     public function destroy(string $id)
     {
-        $certificate = Certificate::find($id);
-        $certificate->delete();
-
-        return redirect(route('certificates.index'));
+        try {
+            // Buscar el Certificado
+            $certificate = Certificate::find($id);
+            // Verificar si el Certificado existe
+            if (!$certificate) {
+                $error = 404;
+                $message = "El Certificado no se encontro";
+                return view('errors.encontro', compact('error', 'message'));
+            }
+            // Intentar eliminar el Certificado
+            $certificate->delete();
+            // Si la eliminación es exitosa
+            $message = "Certificado eliminado correctamente";
+            return view('errors.exitosa', compact('message'));
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Si hay una violación de la restricción de clave foránea, enviar mensaje de error
+            if ($e->getCode() == 23000) {
+                $error = 400;
+            $message = "Error al intentar eliminar el Certificado, ya que esta relacionada con otros registros";
+            return view('errors.middleware', compact('error', 'message'));
+            }
+        }
     }
 }

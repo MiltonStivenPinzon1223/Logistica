@@ -80,11 +80,28 @@ class TypeClothingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $typeClothing = TypeClothing::find($id);
-        $typeClothing->delete();
-
-        return redirect(route('typeClothings.index'));
+    public function destroy(string $id){
+        try {
+            // Buscar el evento
+            $event = Event::find($id);
+            // Verificar si el evento existe
+            if (!$event) {
+                $error = 404;
+                $message = "El evento no se encontro";
+                return view('errors.encontro', compact('error', 'message'));
+            }
+            // Intentar eliminar el evento
+            $event->delete();
+            // Si la eliminación es exitosa
+            $message = "Evento eliminado correctamente";
+            return view('errors.exitosa', compact('message'));
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Si hay una violación de la restricción de clave foránea, enviar mensaje de error
+            if ($e->getCode() == 23000) {
+                $error = 400;
+            $message = "Error al intentar eliminar el evento, ya que esta relacionada con otros registros";
+            return view('errors.middleware', compact('error', 'message'));
+            }
+        }
     }
 }

@@ -5,8 +5,8 @@
     <!-- Sale & Revenue Start -->
     <div class="container-fluid pt-4 px-4">
         <div class="bg-primary rounded d-flex align-items-center justify-content-between p-4">
-            <h3>{{$certi->name}}</h3>
-            <a href="{{route('certis.edit', $certi->id)}}" type="button" class="btn btn-success">Editar</a>
+            <h3>{{$certificate->name}}</h3>
+            <a href="{{route('certificates.edit', $certificate->id)}}" type="button" class="btn btn-success">Editar</a>
         </div>
     </div>
     <div class="container p-5">

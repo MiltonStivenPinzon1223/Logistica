@@ -28,7 +28,11 @@
                         <td>
                         <div class="btn-group">
                             <a href="{{route('certificates.show', $certificate->id)}}" type="button" class="btn btn-success">Detalles</a>
-                            <a href="{{route('certificates.destroy', $certificate->id)}}" type="button" class="btn btn-primary">Eliminar</a>
+                            <form action="{{route('certificates.destroy', $certificate->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Eliminar" class="btn btn-primary">
+                            </form>
                         </div>
                         </td>
                     </tr>

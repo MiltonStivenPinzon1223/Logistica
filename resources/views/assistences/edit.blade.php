@@ -14,8 +14,8 @@
                             @csrf
                             @method('PUT') <!-- Para usar el método PUT en el formulario -->
                             <div class="mb-3 mt-3">
-                              <label for="name" class="form-label">Tipo de asistencia:</label>
-                              <input type="text" class="form-control" id="name" placeholder="Ingrese nombre" name="name" value="{{$type->name}}">
+                            <label for="name" class="form-label">Tipo de asistencia:</label>
+                            <input type="text" class="form-control" id="name" placeholder="Ingrese nombre" name="name" value="{{$type->name}}">
                             </div>
                             <button type="submit" class="btn btn-secondary">Actualizar</button>
                         </form>
