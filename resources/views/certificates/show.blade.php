@@ -11,7 +11,7 @@
     </div>
     <div class="container p-5">
         <div
-        class="card text-dark bg.ligth ">
+        class="card text-dark bg-secondary ">
         <div class="card-body">
             <tbody>
                 <tr class="">

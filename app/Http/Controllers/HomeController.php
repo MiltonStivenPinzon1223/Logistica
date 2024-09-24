@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assistence;
 use App\Models\Event;
 use App\Models\Logistic;
+use App\Models\Solicitude;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,10 @@ class HomeController extends Controller
                             ->whereNotIn('id', $assistedEventIds)
                             ->get();
             return view('home', compact('user', 'events'));
+        }elseif ($user->id_roles == 2) {
+            # code...
+        }elseif ($user->id_roles == 3) {
+            return redirect()->route('solicitudes.index');
         }
     }
 

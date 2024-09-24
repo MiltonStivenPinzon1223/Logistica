@@ -22,7 +22,7 @@ class CollectionAccount extends Model
     ];
     public function assistences()
     {
-        return $this->belongsTo(CollectionAccount::class, 'id_assistences');
+        return $this->belongsTo(Assistence::class, 'id_assistences');
     }
 
 }

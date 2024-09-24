@@ -31,7 +31,7 @@ class Event extends Model
     }
     public function users()
     {
-        return $this->belongsTo(Event::class, 'id_users');
+        return $this->belongsTo(User::class, 'id_users');
     }    
 
 }
