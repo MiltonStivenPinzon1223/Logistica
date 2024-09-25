@@ -5,8 +5,8 @@
     <!-- Sale & Revenue Start -->
     <div class="container-fluid pt-4 px-4">
         <div class="bg-primary rounded d-flex align-items-center justify-content-between p-4">
-            <h3>Solicitudes</h3>
-            @if ($user->id_roles == 2)
+            <h3>Postulaciones</h3>
+            @if ($user->id_roles == 1)
                 <a href="{{route('assistences.create')}}" type="button" class="btn btn-success">Crear</a>
             @endif
         </div>
