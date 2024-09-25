@@ -70,7 +70,6 @@
                         <a href="{{route('events.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>
                         <a href="{{route('assistences.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Asistencias</a>
                         <a href="{{route('assistences.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Solicitudes</a>
-                        <a href="{{route('profile')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mi perfil</a>
                     @endif
                     @if ($user->id_roles == 3)
                     <div class="nav-item dropdown">
