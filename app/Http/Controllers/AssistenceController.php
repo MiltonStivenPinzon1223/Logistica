@@ -84,10 +84,10 @@ class AssistenceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $assistence = Assistence::find($id);
-        $assistence->name = $request->name;
+        $assistence->status = $request->status;
         $assistence->save();
         return redirect(route('assistences.index'));
     }
