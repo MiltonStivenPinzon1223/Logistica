@@ -1,66 +1,59 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Solicitude;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SolicitudeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $solicitudes = Solicitude::all();
-        return $solicitudes;
+        $solicitudes = Solicitude::paginate(10);
+        return view('solicitudes.index', compact('solicitudes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('solicitudes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'description' => 'required|string|max:1000',
+            'status' => 'required|string|max:255',
+        ]);
+
+        Solicitude::create([
+            'description' => $validatedData['description'],
+            'status' => 1,
+            'id_users' => Auth::id()
+        ]);
+
+        return redirect()->route('solicitudes.index')->with('success', 'Solicitud creada exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Solicitude $solicitude)
     {
-        //
+        return view('solicitudes.show', compact('solicitude'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Solicitude $solicitude)
     {
-        //
+        return view('solicitudes.edit', compact('solicitude'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Solicitude $solicitude)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'description' => 'required|string|max:1000',
+            'status' => 'required|string|max:255',
+            'id_users' => 'required|integer|exists:users,id',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Solicitude $solicitude)
-    {
-        //
+        $solicitude->update($validatedData);
+
+        return redirect()->route('solicitudes.index')->with('success', 'Solicitud actualizada exitosamente.');
     }
 }
