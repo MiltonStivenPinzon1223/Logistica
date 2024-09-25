@@ -14,4 +14,9 @@ class Solicitude extends Model
         'status',
         'id_users',
     ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'id_users');
+    }
 }

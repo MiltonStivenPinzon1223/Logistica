@@ -28,6 +28,7 @@ Route::get('/profile/edit', [HomeController::class, 'profileEdit'])->name('profi
 Route::put('/profile', [HomeController::class, 'profileUpdate'])->name('profile.update');
 Route::get('roles', [RoleController::class,'index'])->name('roles.index');
 Route::get('events/postulations/{id}', [EventController::class, 'postulations'])->name('events.postulations');
+Route::get('solicitudes/historial', [SolicitudeController::class, 'historial'])->name('solicitudes.historial');
 Route::resource('assistences', AssistenceController::class)->names('assistences');
 Route::resource('certificates', CertificateController::class)->names('certificates');
 Route::resource('collection/accounts', CollectionAccountController::class)->names('collection.accounts');

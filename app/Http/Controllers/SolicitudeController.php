@@ -7,15 +7,30 @@ use Illuminate\Support\Facades\Auth;
 
 class SolicitudeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
+        $user = Auth::user();
+        $solicitudes = Solicitude::where('status', '!=', '1')->paginate(10);
+        return view('solicitudes.index', compact('user','solicitudes'));
+    }
+
+    public function historial()
+    {
+        $user = Auth::user();
         $solicitudes = Solicitude::paginate(10);
-        return view('solicitudes.index', compact('solicitudes'));
+        return view('solicitudes.historial', compact('user','solicitudes'));
     }
 
     public function create()
     {
-        return view('solicitudes.create');
+        $user = Auth::user();
+        return view('solicitudes.create', compact('user'));
     }
 
     public function store(Request $request)
@@ -27,7 +42,7 @@ class SolicitudeController extends Controller
 
         Solicitude::create([
             'description' => $validatedData['description'],
-            'status' => 1,
+            'status' => 0,
             'id_users' => Auth::id()
         ]);
 
@@ -36,24 +51,22 @@ class SolicitudeController extends Controller
 
     public function show(Solicitude $solicitude)
     {
-        return view('solicitudes.show', compact('solicitude'));
+        $user = Auth::user();
+        return view('solicitudes.show', compact('user','solicitude'));
     }
 
     public function edit(Solicitude $solicitude)
     {
-        return view('solicitudes.edit', compact('solicitude'));
+        $user = Auth::user();
+        return view('solicitudes.edit', compact('user','solicitude'));
     }
 
-    public function update(Request $request, Solicitude $solicitude)
+    public function destroy($id)
     {
-        $validatedData = $request->validate([
-            'description' => 'required|string|max:1000',
-            'status' => 'required|string|max:255',
-            'id_users' => 'required|integer|exists:users,id',
-        ]);
-
-        $solicitude->update($validatedData);
-
+        $solicitude = Solicitude::find($id);
+        $newStatus = ($solicitude->status == 1) ? 0 : 1;
+        $solicitude->status = $newStatus;
+        $solicitude->save();
         return redirect()->route('solicitudes.index')->with('success', 'Solicitud actualizada exitosamente.');
     }
 }

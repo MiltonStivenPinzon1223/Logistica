@@ -6,7 +6,7 @@
     <div class="container-fluid pt-4 px-4">
         <div class="bg-primary rounded d-flex align-items-center justify-content-between p-4">
             <h3>Solicitudes Pendientes</h3>
-            <a href="{{route('solicitudes.historial')}}" class="btn btn-secondary">Historial</a>
+            <a href="{{route('solicitudes.index')}}" class="btn btn-secondary">Atras</a>
         </div>
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
             <div class="table-responsive w-100">
@@ -31,12 +31,12 @@
                 <td>{{ $solicitude->id }}</td>
                 <td>{{ $solicitude->description }}</td>
                 <td>
-                @if ($solicitude->status == 1)
-                    COMPLETADO
-                @else
-                    PENDIENTE
-                @endif
-                </td>
+                    @if ($solicitude->status == 1)
+                        COMPLETADO
+                    @else
+                        PENDIENTE
+                    @endif
+                    </td>
                 <td>{{ $solicitude->users->name }}</td>
                 <td>
                     <!-- Botón para ver -->
