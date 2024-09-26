@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assistence;
 use App\Models\Event;
 use App\Models\TypeClothing;
 use Illuminate\Http\Request;
@@ -70,9 +71,10 @@ class EventController extends Controller
 
     public function postulations($id)
     {
-        $assistencesq= Assistence::where('id', $id)
+        $assistences= Assistence::where('id', $id)
         ->where('status', '!=', 4)  // Trae todos los que no tengan status = 4
         ->get();
+        return $assistences;
     }
 
     /**

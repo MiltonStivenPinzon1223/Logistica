@@ -56,9 +56,11 @@ class TypeCertificateController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $user = Auth::user();
+        $certificate = TypeCertificate::find($id);
+        return view('typeCertificates.edit', compact('user','certificate'));
     }
 
     /**

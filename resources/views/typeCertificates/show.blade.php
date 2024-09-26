@@ -12,7 +12,7 @@
     </div>
     <div class="container p-5">
         <div
-        class="card text-dark bg.ligth ">
+        class="card text-dark bg-secondary text-white">
         <div class="card-body">
             <tbody>
                 <tr class="">
@@ -20,10 +20,6 @@
                 <br>
                 <p>Nombre: <td>{{ $type->name}}</td></p>
                 <br>
-                <p>Creado la fecha: <td>{{ $type->created_at}}</td></p>
-                <br>
-                <p>Actualizado en la fecha: <td>{{ $type->updated_at}}</td></p>
-                <td>
                 <div class="btn-group">
                 </div>
                 </td>

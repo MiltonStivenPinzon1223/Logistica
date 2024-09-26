@@ -26,7 +26,9 @@ class AssistenceController extends Controller
             $logistic = Logistic::where('id_users', $user->id)->first();
             $assistences = Assistence::where('id_logistics', $logistic->id)->where('status','!=','4')->get();
         }else{
-            $assistences = Assistence::all();
+            $assistences = Assistence::whereHas('events', function($query) {
+                $query->where('id_users', Auth::user()->id);
+            })->get();
         }
         return view('assistences.index', compact('assistences', 'user'));
     }

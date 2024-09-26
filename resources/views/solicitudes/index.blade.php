@@ -31,11 +31,7 @@
                 <td>{{ $solicitude->id }}</td>
                 <td>{{ $solicitude->description }}</td>
                 <td>
-                @if ($solicitude->status == 1)
-                    COMPLETADO
-                @else
-                    PENDIENTE
-                @endif
+                    {{ $solicitude->status == 0 ? 'PENDIENTE' : 'COMPLETADO' }}
                 </td>
                 <td>{{ $solicitude->users->name }}</td>
                 <td>
@@ -43,7 +39,11 @@
                     <a href="{{ route('solicitudes.show', $solicitude->id) }}" class="btn btn-info">Ver</a>
 
                     <!-- Botón para editar -->
-                    <a href="{{ route('solicitudes.edit', $solicitude->id) }}" class="btn btn-warning">Editar</a>
+                    <form action="{{route('solicitudes.destroy', $solicitude->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" class="btn btn-success" value="{{ $solicitude->status == 0 ? 'Finalizar' : 'Reabir caso' }}">
+                    </form>
                 </td>
             </tr>
             @endforeach

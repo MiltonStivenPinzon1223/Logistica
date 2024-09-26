@@ -41,7 +41,8 @@ class HomeController extends Controller
                             ->get();
             return view('home', compact('user', 'events'));
         }elseif ($user->id_roles == 2) {
-            # code...
+            $events = Event::where('id_users', $user->id);
+            return view('home', compact('user', 'events'));
         }elseif ($user->id_roles == 3) {
             return redirect()->route('solicitudes.index');
         }

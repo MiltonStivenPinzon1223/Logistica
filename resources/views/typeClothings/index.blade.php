@@ -28,7 +28,6 @@
                         <td>
                         <div class="btn-group">
                             <a href="{{route('type.clothings.show', $typeClothing->id)}}" type="button" class="btn btn-success">Detalles</a>
-                            <a href="{{route('type.clothings.destroy', $typeClothing->id)}}" type="button" class="btn btn-primary">Eliminar</a>
                         </div>
                         </td>
                     </tr>

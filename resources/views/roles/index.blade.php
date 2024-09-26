@@ -14,7 +14,6 @@
                         <tr>
                             <th scope="col">#ID</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,12 +21,6 @@
                         <tr class="">
                         <td>{{ $rol->id}}</td>
                         <td>{{ $rol->rol}}</td>
-                        <td>
-                          <div class="btn-group">
-                            <a type="button" class="btn btn-success">Editar</a>
-                            <a type="button" class="btn btn-primary">Eliminar</a>
-                          </div>
-                        </td>
                     </tr>
                         @endforeach
                     </tbody>
