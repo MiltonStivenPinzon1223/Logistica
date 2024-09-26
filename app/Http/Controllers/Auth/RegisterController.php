@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UsersCreateMail;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -64,6 +66,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $code = rand(100000,999999);
+        $email = $data['email'];
+        Mail::to($email)->send(new UsersCreateMail($code, $email));
         return User::create([
             'name' => $data['name'],
             'document' => $data['document'],
@@ -71,6 +76,7 @@ class RegisterController extends Controller
             'photo' => '/user.jpg',
             'status' => 1,
             'id_roles' => 1,
+            'code' => $code,
             'password' => Hash::make($data['password']),
         ]);
     }

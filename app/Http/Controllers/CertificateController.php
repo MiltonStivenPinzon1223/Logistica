@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Certificate;
+use App\Models\TypeCertificate;
 use App\Models\Logistic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,8 +38,9 @@ class CertificateController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $types = Certificate::all();
-        return view('certificates.create', compact('user'));
+        $types = TypeCertificate::all();
+        $logistics = Logistic::all();
+        return view('certificates.create', compact('types','logistics','user'));
     }
 
     /**
@@ -48,12 +50,10 @@ class CertificateController extends Controller
     {
         // Validación de los datos del formulario
         $validatedData = $request->validate([
-            'id_type_certificate' => 'required|integer|exists:type_certificates,id', // Valida que exista en la tabla de certificates
+            'id_type_certificates' => 'required|integer|exists:type_certificates,id', // Valida que exista en la tabla de certificates
             'id_logistics' => 'required|integer|exists:logistics,id', // Valida que exista en la tabla de logistics
         ]);
 
-        $validatedData['id_users'] = Auth::user()->id;
-        
         // Crear el evento con los datos validados
         certificate::create($validatedData);
 
@@ -77,17 +77,24 @@ class CertificateController extends Controller
     {
         $certificate = Certificate::find($id);
         $user = Auth::user();
-        return view('certificates.edit', compact('certificate', 'user'));
+        $types = TypeCertificate::all();
+        $logistics = Logistic::all();
+        return view('certificates.edit', compact('types','logistics','certificate', 'user', ));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $certificate = Certificate::find($id);
-        $certificate->name = $request->name;
-        $certificate->save();
+        $validatedData = $request->validate([
+            'id_type_certificates' => 'required|integer|exists:type_certificates,id', // Valida que exista en la tabla de certificates
+            'id_logistics' => 'required|integer|exists:logistics,id', // Valida que exista en la tabla de logistics
+        ]);
+
+        // Crear el evento con los datos validados
+        $certificate->update($validatedData);
 
         return redirect(route('certificates.index'));
     }

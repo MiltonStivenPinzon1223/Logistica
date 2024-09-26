@@ -39,13 +39,22 @@ class LogisticController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $logistic = new Logistic();
-        $logistic->celular = $request->celular;
-        $logistic->description = $request->description;
-        $logistic->id_users = $user->id;
-        $logistic->save();
+        if ($request->code == $user->code) {
+            $user = Auth::user();
+            $user->code = 0;
+            $user->save();
+            $logistic = new Logistic();
+            $logistic->celular = $request->celular;
+            $logistic->description = $request->description;
+            $logistic->id_users = $user->id;
+            $logistic->save();
 
-        return redirect(route('home'));
+            return redirect(route('home'));
+        }else{
+            $error = 400;
+            $message = "Codigo de  verificacion incorrecto.";
+            return view('errors.middleware', compact('error', 'message'));
+        }
     }
 
     /**

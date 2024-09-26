@@ -1,63 +1,66 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Editar certificado') }}</div>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('certificates.update', $certificate->id) }}">
-                        @method('UPDATE')
-                        @csrf
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre del certificado') }}</label>
-                            <div class="col-md-6">
-                                <input id="name" type="text"  class="form-control @error('name') is-invalid @enderror" name="id" value="{{$certificate->id}}" required autofocus>
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+<div class="content">
+    <!-- Sale & Revenue Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-primary rounded d-flex align-items-center justify-content-between p-4">
+            <h3>Tipos de Certificados</h3>
+        </div>
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <div class="card text-white bg-primary">
+                    <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha del certificado') }}</label>
-                            <div class="col-md-6">
-                                <input id="date" type="date" class="form-control @error('date') is-invalid @enderror" name="id_type_certificates" value="{{$certificate->id_type_certificates}}"required>
-                                @error('date')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        @endif
+                        <form action="{{route('certificates.update', $certificate->id)}}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="mb-3 mt-3">
+                            <label for="name" class="form-label">Certificado:</label>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Tipo de Certificado</label>
+                                <select
+                                    class="form-select form-select-lg"
+                                    name="id_type_certificates"
+                                    id=""
+                                >
+                                @foreach($types as $type)
+                                <option value="{{ $type->id }}" {{ old('type_id', $certificate->type_id) == $type->id ? 'selected' : '' }}>
+                                    {{ $type->name }}
+                                </option>
+                                @endforeach
+                                </select>
+                                </select>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="start" class="col-md-4 col-form-label text-md-right">{{ __('Inicio') }}</label>
-                            <div class="col-md-6">
-                                <input id="start" type="time" class="form-control @error('start') is-invalid @enderror" name="id_logistics" value="{{$certificate->logistics->users->name}}" required>
-                                @error('start')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <div class="mb-3">
+                                <label for="" class="form-label">Logistico</label>
+                                <select
+                                    class="form-select form-select-lg"
+                                    name="id_logistics"
+                                    id=""
+                                >
+                                @foreach($logistics as $logistic)
+                                <option value="{{ $logistic->id }}" {{ old('logistic_id', $certificate->logistic_id) == $logistic->id ? 'selected' : '' }}>
+                                    {{ $logistic->users->name }}
+                                </option>
+                                @endforeach
+                                </select>
                             </div>
-                        </div>
-                        <!-- Aquí puedes agregar selectores para los IDs de tipo de ropa y usuarios -->
-                        <!-- Suponiendo que tienes listas de tipos de ropa y usuarios -->
-                        
-                        <!-- Botón para enviar -->
-                        <div class='form-group row mb-0'>
-                            <div class='col-md-6 offset-md-4'>
-                                <button type='submit' class='btn btn-primary'>
-                                    {{ __('Crear certificateo') }}
-                                </button>
                             </div>
-                        </div>
-                    </form>
+                            <button type="submit" class="btn btn-secondary">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Sale & Revenue End -->
 </div>
 @endsection

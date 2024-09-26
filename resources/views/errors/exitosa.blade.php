@@ -22,7 +22,7 @@
 <script>
     // Mostrar el mensaje durante 2 segundos y luego redirigir
     setTimeout(function() {
-        window.location.href = '{{ route('events.index') }}';
+        window.location.href = '{{ route('home') }}';
     }, 2000); 
 </script>
     @endsection

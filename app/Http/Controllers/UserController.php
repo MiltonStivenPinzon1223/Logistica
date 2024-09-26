@@ -18,8 +18,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        $authUser = Auth::user();
-        return view('users.index', compact('users', 'authUser'));
+        $user = Auth::user();
+        return view('users.index', compact('users', 'user'));
     }
 
     /**
@@ -88,8 +88,10 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::find($id);
-        $user->delete();
+        $user = user::find($id);
+        $newStatus = ($user->status == 0) ? 1 : 0;
+        $user->status = $newStatus;
+        $user->save();
 
         return redirect(route('users.index'));
     }

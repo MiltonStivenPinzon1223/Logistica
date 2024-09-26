@@ -31,6 +31,16 @@
                                 @enderror
                     <label for="floatingText text-black">Regalanos una descripción tuya</label>
                 </div>
+                <div class="form-floating mb-3">
+                    <input id="code" type="number" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" required autocomplete="code" autofocus>
+
+                                @error('code')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                    <label for="floatingText text-black">Codigo de verificacion</label>
+                </div>
                 <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Siguiente</button>
             </div>
         </div>

@@ -16,7 +16,7 @@ class Certificate extends Model
      */
     protected $fillable = [
         'id_type_certificates',
-        'id_logistic',
+        'id_logistics',
     ];
     public function certificates()
     {

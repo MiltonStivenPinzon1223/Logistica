@@ -78,6 +78,8 @@
                             <a href="{{ route('roles.index') }}" class="nav-item nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}">Roles</a>
                             <a href="{{ route('type.certificates.index') }}" class="nav-item nav-link {{ request()->routeIs('type.certificates.index') ? 'active' : '' }}">Tipo de certificados</a>
                             <a href="{{ route('type.clothings.index') }}" class="nav-item nav-link {{ request()->routeIs('type.clothings.index') ? 'active' : '' }}">Tipo de vestimentas</a>
+                            <a href="{{ route('users.index') }}" class="nav-item nav-link {{ request()->routeIs('type.clothings.index') ? 'active' : '' }}">Usuarios</a>
+                            <a href="{{ route('certificates.index') }}" class="nav-item nav-link {{ request()->routeIs('type.clothings.index') ? 'active' : '' }}">Certificados</a>
                         </div>
                     </div>
                     @endif
