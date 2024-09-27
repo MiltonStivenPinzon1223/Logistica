@@ -1,0 +1,58 @@
+Date : 2024-09-26 21:00:55
+Directory : c:\xampp\htdocs\logistica
+Total : 19 files,  347 codes, 37 comments, 52 blanks, all 436 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| PHP      |         19 |        347 |         37 |         52 |        436 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                           | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                              |         19 |        347 |         37 |         52 |        436 |
+| app                                                                            |         10 |        183 |         37 |         39 |        259 |
+| app\Http                                                                       |          7 |        114 |          9 |         22 |        145 |
+| app\Http\Controllers                                                           |          7 |        114 |          9 |         22 |        145 |
+| app\Http\Controllers (Files)                                                   |          5 |        100 |          9 |         20 |        129 |
+| app\Http\Controllers\Auth                                                      |          2 |         14 |          0 |          2 |         16 |
+| app\Mail                                                                       |          2 |         68 |         28 |         17 |        113 |
+| app\Models                                                                     |          1 |          1 |          0 |          0 |          1 |
+| resources                                                                      |          8 |        155 |          0 |         12 |        167 |
+| resources\views                                                                |          8 |        155 |          0 |         12 |        167 |
+| resources\views\certificates                                                   |          2 |         37 |          0 |          0 |         37 |
+| resources\views\emails                                                         |          2 |         26 |          0 |          0 |         26 |
+| resources\views\layouts                                                        |          1 |          2 |          0 |          0 |          2 |
+| resources\views\logistics                                                      |          1 |          9 |          0 |          1 |         10 |
+| resources\views\users                                                          |          2 |         81 |          0 |         11 |         92 |
+| routes                                                                         |          1 |          9 |          0 |          1 |         10 |
++--------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                       | language | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\xampp\htdocs\logistica\app\Http\Controllers\AuthController.php              | PHP      |         79 |          8 |         19 |        106 |
+| c:\xampp\htdocs\logistica\app\Http\Controllers\Auth\LoginController.php        | PHP      |          8 |          0 |          2 |         10 |
+| c:\xampp\htdocs\logistica\app\Http\Controllers\Auth\RegisterController.php     | PHP      |          6 |          0 |          0 |          6 |
+| c:\xampp\htdocs\logistica\app\Http\Controllers\CertificateController.php       | PHP      |          6 |          1 |          0 |          7 |
+| c:\xampp\htdocs\logistica\app\Http\Controllers\CollectionAccountController.php | PHP      |          4 |          0 |          1 |          5 |
+| c:\xampp\htdocs\logistica\app\Http\Controllers\LogisticController.php          | PHP      |          9 |          0 |          0 |          9 |
+| c:\xampp\htdocs\logistica\app\Http\Controllers\UserController.php              | PHP      |          2 |          0 |          0 |          2 |
+| c:\xampp\htdocs\logistica\app\Mail\ResetPassword.php                           | PHP      |         33 |         14 |          9 |         56 |
+| c:\xampp\htdocs\logistica\app\Mail\UsersCreateMail.php                         | PHP      |         35 |         14 |          8 |         57 |
+| c:\xampp\htdocs\logistica\app\Models\User.php                                  | PHP      |          1 |          0 |          0 |          1 |
+| c:\xampp\htdocs\logistica\resources\views\certificates\create.blade.php        | PHP      |         33 |          0 |          0 |         33 |
+| c:\xampp\htdocs\logistica\resources\views\certificates\edit.blade.php          | PHP      |          4 |          0 |          0 |          4 |
+| c:\xampp\htdocs\logistica\resources\views\emails\createUsers.blade.php         | PHP      |         13 |          0 |          0 |         13 |
+| c:\xampp\htdocs\logistica\resources\views\emails\resetPassword.blade.php       | PHP      |         13 |          0 |          0 |         13 |
+| c:\xampp\htdocs\logistica\resources\views\layouts\app.blade.php                | PHP      |          2 |          0 |          0 |          2 |
+| c:\xampp\htdocs\logistica\resources\views\logistics\create.blade.php           | PHP      |          9 |          0 |          1 |         10 |
+| c:\xampp\htdocs\logistica\resources\views\users\index.blade.php                | PHP      |         56 |          0 |          5 |         61 |
+| c:\xampp\htdocs\logistica\resources\views\users\show.blade.php                 | PHP      |         25 |          0 |          6 |         31 |
+| c:\xampp\htdocs\logistica\routes\web.php                                       | PHP      |          9 |          0 |          1 |         10 |
+| Total                                                                          |          |        347 |         37 |         52 |        436 |
++--------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

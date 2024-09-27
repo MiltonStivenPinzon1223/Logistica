@@ -1,0 +1,41 @@
+
+\__sonar_lambda_C:\xampp\htdocs\logistica\app\Http\Controllers\AssistenceController.php_29_58Q
+GC:\xampp\htdocs\logistica\app\Http\Controllers\AssistenceController.php: (B"1*@
+2
+AssistenceController.php"
+ (
+implicit return*ç
+1 (<z
+x
+* (6
+%1"%illuminate\support\facades\auth::user*?
+
+__unknown_file (#"!
+illuminate\support\facades\authD
+B
+* (:
+%2"__id**
+
+__unknown_file (*
+
+%1"
+id
+ (;
+%3*&
+
+__unknown_file (
+
+
+$query*(
+
+__unknown_file (
+
+id_users*"
+
+__unknown_file (
+
+%22where*
+2:
+C (I
+$queryB-+
+)app\http\controllers\assistencecontrollerH
