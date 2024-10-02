@@ -1,0 +1,62 @@
+
+=app\http\controllers\auth\verificationcontroller::__constructX
+NC:\xampp\htdocs\logistica\app\Http\Controllers\Auth\VerificationController.php# #("1*B
+2
+VerificationController.php"
+( ((
+implicit return*‡
+1% %("óî
+% %(!
+%1*P
+
+__unknown_file (42
+0app\http\controllers\auth\verificationcontroller*$
+
+__unknown_file (
+auth2
+middlewareôñ
+& &(#
+%2*P
+
+__unknown_file (42
+0app\http\controllers\auth\verificationcontroller*&
+
+__unknown_file (
+
+signed2
+middlewaredb
+& &(3
+%3*"
+
+__unknown_file (
+
+%2*&
+
+__unknown_file (
+
+verify2onlyüú
+' '()
+%4*P
+
+__unknown_file (42
+0app\http\controllers\auth\verificationcontroller*,
+
+__unknown_file (
+throttle:6,12
+middlewareçä
+' '(C
+%5*"
+
+__unknown_file (
+
+%4*&
+
+__unknown_file (
+
+verify*&
+
+__unknown_file (
+
+resend2only*
+2B42
+0app\http\controllers\auth\verificationcontrollerH
