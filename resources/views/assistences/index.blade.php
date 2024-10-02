@@ -46,7 +46,7 @@
                                     @method('PUT')
                                 <div class="btn-group">
                                     
-                                        <select name="status" id="" class="btn btn-secondary disabled">
+                                        <select name="status" id="" class="btn btn-secondary ">
                                             <option value="1">En proceso</option>
                                             <option value="2">confirmado</option>
                                             <option value="3">rechazado</option>

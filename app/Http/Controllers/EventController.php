@@ -74,7 +74,8 @@ class EventController extends Controller
         $assistences= Assistence::where('id', $id)
         ->where('status', '!=', 4)  // Trae todos los que no tengan status = 4
         ->get();
-        return $assistences;
+        $user = Auth::user();
+        return view('events.postulantes', compact('assistences', 'user'));
     }
 
     /**

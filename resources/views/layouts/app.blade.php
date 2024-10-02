@@ -4,7 +4,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <title>Royale House</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -63,13 +63,12 @@
                     @if ($user->id_roles == 1)
                         <a href="{{route('assistences.show', $user->id)}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>
                         <a href="{{route('certificates.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mis certificados</a>
-                        <a href="{{route('assistences.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mis solicitudes</a>
                         <a href="{{route('collection.accounts.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Mis ganancias</a>
                     @endif
                     @if ($user->id_roles == 2)
                         <a href="{{route('events.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Historial eventos</a>
                         <a href="{{route('assistences.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Asistencias</a>
-                        <a href="{{route('assistences.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Solicitudes</a>
+                        <a href="{{route('solicitudes.index')}}" class="nav-item nav-link"><i class="fa fa-address-book me-2"></i>Solicitudes</a>
                     @endif
                     @if ($user->id_roles == 3)
                     <div class="nav-item dropdown">
